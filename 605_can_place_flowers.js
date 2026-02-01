@@ -37,17 +37,19 @@ var canPlaceFlowers = function(flowerbed, n) {
         const atual = flowerbed[i];
 
         if(atual == 0){
-            const anterior = flowerbed[i - 1];
-            const proxima = flowerbed[i + 1];
+            const anterior = i == 0 ? 0 : flowerbed[i - 1];
+            const proxima = (i == flowerbed.length - 1) ? 0 : flowerbed[i + 1];
             if(anterior == 0 && proxima == 0){
                 ++quantidade;
+                flowerbed[i] = 1;
             }
         }
     }
 
-    return quantidade == n;
+    return quantidade >= n;
 };
 
 console.log(canPlaceFlowers([1,0,0,0,1], 1));
 console.log(canPlaceFlowers([1,0,0,0,1], 2));
 console.log(canPlaceFlowers([0,0,1,0,1], 1));
+console.log(canPlaceFlowers([1,0,0,0,0,1], 2));
